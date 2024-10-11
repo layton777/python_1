@@ -1,0 +1,52 @@
+def calcular_imc(peso, estatura):
+    """Calcula el Índice de Masa Corporal (IMC).
+
+    Args:
+        peso: Peso de la persona en kilogramos.
+        estatura: Estatura de la persona en metros.
+
+    Returns:
+        El valor del IMC.
+    """
+    imc = peso / (estatura ** 2)
+    return imc
+
+def clasificar_imc(imc):
+    """Clasifica el IMC según los rangos de la OMS y determina el riesgo.
+
+    Args:
+        imc: Índice de Masa Corporal.
+
+    Returns:
+        Una tupla con la clasificación (bajo peso, adecuado, sobrepeso, obesidad) y el riesgo (bajo, medio, alto).
+    """
+    if imc < 18.5:
+        return "Bajo peso", "Bajo"
+    elif 18.5 <= imc < 25:
+        return "Adecuado", "Bajo"
+    elif 25 <= imc < 30:
+        return "Sobrepeso", "Medio"
+    elif 30 <= imc < 35:
+        return "Obesidad", "Medio"
+    else:
+        return "Obesidad", "Alto"
+
+def main():
+    """Programa principal."""
+
+    num_personas = int(input("¿Cuántas personas deseas ingresar? "))
+
+    for i in range(num_personas):
+        nombre = input("Ingrese el nombre de la persona: ")
+        apellido = input("Ingrese el apellido de la persona: ")
+        estatura = float(input("Ingrese la estatura de la persona en metros: "))
+        peso = float(input("Ingrese el peso de la persona en kilogramos: "))
+
+        imc = calcular_imc(peso, estatura)
+        riesgo = clasificar_imc(imc)[1]
+
+        print(f"Nombre: {nombre} {apellido}")
+        print(f"Riesgo: {riesgo}\n")
+
+if __name__ == "__main__":
+    main()
